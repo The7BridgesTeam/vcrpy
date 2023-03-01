@@ -239,7 +239,6 @@ class Cassette:
 
     def append(self, request, response):
         """Add a request, response pair to this cassette"""
-        log.info("Appending request %s and response %s", request, response)
         request = self._before_record_request(request)
         if not request:
             return
@@ -249,6 +248,7 @@ class Cassette:
         response = self._before_record_response(response)
         if response is None:
             return
+        log.info("Appending request %s and response %s", request, response)
         self.data.append((request, response))
         self.dirty = True
 
